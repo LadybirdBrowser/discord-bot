@@ -6,25 +6,20 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-env: [ 'development', 'production' ]
+        node-env: ["development", "production"]
     env:
-        NODE_ENV: ${{ matrix.node-env }}
+      NODE_ENV: ${{ matrix.node-env }}
     steps:
-      - name: Checkout 
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node 
-        uses: actions/setup-node@v4.0.2
-        with:
-          node-version: 16
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
 
-      - run: yarn install
+      - run: bun install
 
-      - run: yarn build
-
-      - run: yarn lint
+      - run: bun lint
         if: ${{ matrix.node-env == 'development' }}
 
-      - run: yarn test
+      - run: bun test
         if: ${{ matrix.node-env == 'development' }}
-
