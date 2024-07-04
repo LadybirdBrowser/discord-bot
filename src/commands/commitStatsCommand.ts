@@ -131,12 +131,12 @@ export class CommitStatsCommand extends Command {
                 .addFields(
                     ...userCommits
                         .slice(0, 3)
-                        .filter(({ totalCount }) => totalCount! > 0)
+                        .filter(({ totalCount }) => totalCount !== undefined && totalCount > 0)
                         .map(({ repo, commits, totalCount }, index) => ({
                             name: `${toMedal(index + 1)} **${repo.owner}/${
                                 repo.name
                             }** - **${totalCount?.toLocaleString("en-US")} commit${
-                                totalCount! > 1 ? "s" : ""
+                                totalCount > 1 ? "s" : ""
                             }**`,
                             value: [
                                 ...commits

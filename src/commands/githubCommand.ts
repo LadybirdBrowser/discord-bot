@@ -5,7 +5,6 @@
  */
 
 import {
-    ApplicationCommandData,
     ChatInputCommandInteraction,
     SlashCommandBuilder,
     TextChannel,
@@ -190,7 +189,7 @@ export class GithubCommand extends Command {
 }
 
 export class ReviewList extends Command {
-    override data(): ApplicationCommandData[] {
+    override data() {
         const aliases = ["reviewlist", "prlist"];
 
         const baseCommand = new SlashCommandBuilder()
