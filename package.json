@@ -1,7 +1,7 @@
 {
-    "name": "buggie-bot",
+    "name": "ladybird-bot",
     "version": "0.0.1",
-    "description": "SerenityOS Discord Bot",
+    "description": "Ladybird Discord Bot",
     "main": "index.js",
     "license": "BSD-2-Clause",
     "engines": {
@@ -10,11 +10,8 @@
     "scripts": {
         "lint": "eslint . --ext .ts",
         "lint-and-fix": "eslint . --ext .ts --fix",
-        "start:dev": "nodemon --watch './src/**' --ext 'ts,js,json' --exec \"ts-node --files ./src/index.ts\"",
-        "prebuild": "rimraf ./build",
-        "build": "tsc",
-        "prestart": "npm run build",
-        "start": "node build/index.js",
+        "start:dev": "bun --watch ./src/index.ts",
+        "start": "bun ./src/index.ts",
         "test": "mocha -r ts-node/register tests/**/*.test.ts"
     },
     "nodemonConfig": {
@@ -27,18 +24,19 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/SerenityOS/discord-bot.git"
+        "url": "git+https://github.com/LadybirdBrowser/discord-bot.git"
     },
     "keywords": [
         "discord",
         "typescript",
         "bot",
+        "ladybird",
         "serenityos"
     ],
     "bugs": {
-        "url": "https://github.com/SerenityOS/discord-bot/issues"
+        "url": "https://github.com/LadybirdBrowser/discord-bot/issues"
     },
-    "homepage": "https://github.com/SerenityOS/discord-bot#readme",
+    "homepage": "https://github.com/LadybirdBrowser/discord-bot#readme",
     "devDependencies": {
         "@octokit/types": "^9.1.2",
         "@types/chai": "^4.3.4",
