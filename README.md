@@ -1,16 +1,16 @@
-This is the source for the SerenityOS Discord Bot.
+This is the source for the Ladybird Discord Bot.
 
 ### Setup
 
-The bot is written in [TypeScript](https://www.typescriptlang.org), `nodejs` and `yarn` are pre-requisites.
+The bot is written in [TypeScript](https://www.typescriptlang.org), `bun` is a pre-requisite.
 
 Then setup your environment:
 
 ```
-$ git clone https://github.com/SerenityOS/discord-bot
+$ git clone https://github.com/LadybirdBrowser/discord-bot
 $ cd discord-bot
-$ yarn install
-$ yarn build
+$ bun install
+$ bun start
 ```
 
 ### Configuration
@@ -23,15 +23,11 @@ guild_id=<your-guild-id-goes-here>
 ```
 See: https://www.writebots.com/discord-bot-token/
 
-Now you can run `yarn start:dev` and the bot will startup, and then restart as you save changes to the source files:
+Now you can run `bun start:dev` and the bot will startup, and then restart as you save changes to the source files:
 ```
-$ yarn start:dev
-[nodemon] 2.0.7
-[nodemon] to restart at any time, enter `rs`
-[nodemon] watching path(s): src/**/*
-[nodemon] watching extensions: ts,js
-[nodemon] starting `ts-node ./src/index.ts`
-Buggie bot has started
+❯ bun start:dev
+$ bun --watch ./src/index.ts
+Logged in as Ladybird Bot#6714.
 ```
 
 ### Running Tests
