@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-import { ApplicationCommandData, ChatInputCommandInteraction } from "discord.js";
+import { ChatInputCommandInteraction } from "discord.js";
 import Command from "./command";
 
 export class QuickLinksCommand extends Command {
@@ -92,7 +92,7 @@ export class QuickLinksCommand extends Command {
         },
     ];
 
-    override data(): ApplicationCommandData[] {
+    override data() {
         return this.links.map(link => ({
             name: link.name,
             description: link.help,
