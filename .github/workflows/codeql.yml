@@ -1,6 +1,6 @@
 name: "CodeQL Static Analysis"
 
-on: 
+on:
   push:
     branches: [master]
   pull_request:
@@ -8,7 +8,6 @@ on:
 
 jobs:
   CodeQL-Build:
-
     # CodeQL runs on ubuntu-latest and windows-latest
     runs-on: ubuntu-latest
     permissions:
@@ -16,16 +15,16 @@ jobs:
       actions: read
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v3
-      with:
-        config-file: ./.github/codeql/configuration.yml
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          config-file: ./.github/codeql/configuration.yml
 
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v3
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
 
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v3
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3

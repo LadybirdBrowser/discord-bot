@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2021, the SerenityOS developers.
+ * Copyright (c) 2024, the SerenityOS & Ladybird developers.
+ * Copyright (c) 2024, versecafe
  *
  * SPDX-License-Identifier: BSD-2-Clause
  *
@@ -17,12 +18,10 @@
  * DO NOT export command classes using default
  */
 
-export * from "./commitStatsCommand";
-export * from "./emojiCommand";
-export * from "./githubCommand";
-export * from "./manCommand";
-export * from "./planCommand";
-export * from "./quickLinksCommand";
-export * from "./quoteCommand";
-export * from "./testCommand";
-export * from "./userCommand";
+export { CommitStatsCommand } from "./commitStatsCommand";
+export { EmojiCommand } from "./emojiCommand";
+export { GithubCommand } from "./githubCommand";
+export { PlanCommand } from "./planCommand";
+export { QuickLinksCommand } from "./quickLinksCommand";
+export { TestCommand } from "./testCommand";
+export { UserCommand } from "./userCommand";
