@@ -15,14 +15,14 @@ const envSchema = z.object({
       required_error: "DISCORD_TOKEN was not found, either it or the .env file are missing",
     })
     .trim()
-    .min(1, "DISCORD_TOKEN was not of the minimum lenght it is either malformed or incomplete"),
+    .min(1, "DISCORD_TOKEN was not of the minimum length it is either malformed or incomplete"),
   GITHUB_TOKEN: z
     .string({
       // eslint-disable-next-line camelcase -- Param isn't camelcase
       required_error: "GITHUB_TOKEN was not found, either it or the .env file are missing",
     })
     .trim()
-    .min(1, "GITHUB_TOKEN was not of the minimum lenght it is either malformed or incomplete")
+    .min(1, "GITHUB_TOKEN was not of the minimum length it is either malformed or incomplete")
     .optional(),
   GUILD_ID: z
     .string({
@@ -30,7 +30,7 @@ const envSchema = z.object({
       required_error: "GUILD_ID was not found, either it or the .env file are missing",
     })
     .trim()
-    .min(1, "GUILD_ID was not of the minimum lenght it is either malformed or incomplete"),
+    .min(1, "GUILD_ID was not of the minimum length it is either malformed or incomplete"),
 });
 
 const envParse = envSchema.safeParse({
