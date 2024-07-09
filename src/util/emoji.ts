@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, the SerenityOS & Ladybird developers.
+ * Copyright (c) 2021-2024, the SerenityOS & Ladybird developers.
  * Copyright (c) 2024, versecafe
  *
  * SPDX-License-Identifier: BSD-2-Clause
@@ -83,6 +83,11 @@ export async function getYaksplode(clientOrParent: ClientOrParent): Promise<Emoj
 /** Alias function for the :neoyak: emoji */
 export async function getNeoyak(clientOrParent: ClientOrParent): Promise<Emoji | null> {
   return await getEmoji(clientOrParent, "neoyak");
+}
+
+/** Alias function for the :ladybird: emoji */
+export async function getLadybird(clientOrParent: ClientOrParent): Promise<Emoji | null> {
+  return await getEmoji(clientOrParent, "ladybird");
 }
 
 /** Alias function for the :libjs: emoji */
