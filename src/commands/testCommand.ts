@@ -201,6 +201,7 @@ export class TestCommand extends Command {
 
     const description = Object.entries(result.versions)
       .map(([repository, commitHash]) => {
+        if (repository == "serenity") repository = "ladybird";
         const treeUrl = TestCommand.repositoryUrlByName.get(repository);
         const shortCommitHash = commitHash.substring(0, 7);
 
