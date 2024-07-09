@@ -9,6 +9,8 @@ jobs:
         node-env: ["development", "production"]
     env:
       NODE_ENV: ${{ matrix.node-env }}
+      DISCORD_TOKEN: "abcd"
+      GUILD_ID: 1234
     steps:
       - name: Checkout
         uses: actions/checkout@v4
