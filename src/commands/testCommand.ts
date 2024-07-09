@@ -7,20 +7,7 @@
 
 import { EmbedBuilder, ChatInputCommandInteraction, SlashCommandBuilder, Client } from "discord.js";
 import axios from "axios";
-import {
-  getBuggiemagnify,
-  getBuggus,
-  getLibjs,
-  getMakemore,
-  getNeoyak,
-  getPoggie,
-  getSadCaret,
-  getSkeleyak,
-  getYak,
-  getYakslice,
-  getYaksplode,
-  getYakstack,
-} from "@/util/emoji";
+import { getLadybird, getMakemore, getSadCaret } from "@/util/emoji";
 import Command from "./command";
 import githubAPI from "@/apis/githubAPI";
 
@@ -155,25 +142,25 @@ export class TestCommand extends Command {
       case "total":
         return "🧪";
       case "passed":
-        return (await getPoggie(client))?.toString() ?? label;
+        return "✅";
       case "failed":
-        return (await getYak(client))?.toString() ?? label;
+        return "❌";
       case "skipped":
-        return (await getBuggiemagnify(client))?.toString() ?? label;
+        return "⚠️";
       case "metadata_error":
-        return (await getBuggus(client))?.toString() ?? label;
+        return "📄";
       case "harness_error":
-        return (await getYakslice(client))?.toString() ?? label;
+        return "⚙️";
       case "timeout_error":
-        return (await getSkeleyak(client))?.toString() ?? label;
+        return "💀";
       case "process_error":
-        return (await getYaksplode(client))?.toString() ?? label;
+        return "💥️";
       case "runner_exception":
-        return (await getNeoyak(client))?.toString() ?? label;
+        return "🐍";
       case "todo_error":
-        return (await getYakstack(client))?.toString() ?? label;
+        return "📝";
       case "percentage_passing":
-        return (await getLibjs(client))?.toString() ?? label;
+        return (await getLadybird(client))?.toString() ?? label;
       default:
         return label;
     }
