@@ -18,7 +18,6 @@
  * DO NOT export command classes using default
  */
 
-export { CommitStatsCommand } from "./commitStatsCommand";
 export { EmojiCommand } from "./emojiCommand";
 export { GithubCommand } from "./githubCommand";
 export { PlanCommand } from "./planCommand";
