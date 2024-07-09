@@ -38,6 +38,14 @@ const repositories: Array<{
     urlRegex: /.+github.com\/LadybirdBrowser\/discord-bot\/(?:issues|pull)\/(\d+).*/,
   },
   {
+    name: "Website",
+    repository: {
+      owner: "LadybirdBrowser",
+      name: "ladybird.org",
+    },
+    urlRegex: /.+github.com\/LadybirdBrowser\/ladybird.org\/(?:issues|pull)\/(\d+).*/,
+  },
+  {
     name: "LibJS Test",
     repository: {
       owner: "LadybirdBrowser",
