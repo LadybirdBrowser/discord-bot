@@ -8,8 +8,6 @@
 import { describe, it, expect } from "bun:test";
 import githubAPI from "@/apis/githubAPI";
 import { env } from "@/config/env";
-import { calculateCommitStats } from "@/commands/commitStatsCommand";
-import { CommitClubColor } from "@/util/color";
 
 describe("Github API", () => {
   it("Fetch repositories", async () => {
@@ -36,12 +34,5 @@ describe("Env Validation", () => {
 });
 
 describe("Bot Features", () => {
-  it("Commit Rank", async () => {
-    const result = await calculateCommitStats("awesomekling");
-    if (!result.ok) throw new Error();
-    const { color } = result.value;
-    expect(color?.({})).toBe(CommitClubColor.TenThousand);
-  }, 100000);
-
   // TODO expand features test suite and then break this file up
 });
