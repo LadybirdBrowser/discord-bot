@@ -185,7 +185,7 @@ export class GithubCommand extends Command {
   }
 }
 
-export class ReviewList extends Command {
+export class ReviewListCommand extends Command {
   override data() {
     const aliases = ["reviewlist", "prlist"];
 

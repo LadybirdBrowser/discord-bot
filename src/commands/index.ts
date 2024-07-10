@@ -19,7 +19,7 @@
  */
 
 export { EmojiCommand } from "./emojiCommand";
-export { GithubCommand } from "./githubCommand";
+export { GithubCommand, ReviewListCommand } from "./githubCommand";
 export { PlanCommand } from "./planCommand";
 export { QuickLinksCommand } from "./quickLinksCommand";
 export { TestCommand } from "./testCommand";
