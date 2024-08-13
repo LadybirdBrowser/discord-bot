@@ -35,6 +35,11 @@ export class QuickLinksCommand extends Command {
       help: "Get a link to the directions for configuring Emacs",
     },
     {
+      name: "gettingstarted",
+      response: `**Welcome to the Ladybird web browser project!**\nHere's a guide to help you get started contributing: <${this.documentation}/GettingStartedContributing.md>`,
+      help: "Get a link to the getting started contributing guide",
+    },
+    {
       name: "vscode",
       response: `Configuring the Visual Studio Code IDE: <${this.documentation}/VSCodeConfiguration.md>`,
       help: "Get a link to the directions for configuring the Visual Studio Code IDE",
