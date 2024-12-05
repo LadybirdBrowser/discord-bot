@@ -71,12 +71,6 @@ export class QuickLinksCommand extends Command {
       help: "Get a link to a video explaining how to rewrite git history",
     },
     {
-      name: "soytineres",
-      response:
-        "https://cdn.discordapp.com/attachments/830525235803586570/843838343905411142/IMG_20210517_170429.png",
-      help: "!SOytinereS",
-    },
-    {
       name: "whf",
       response:
         "WHF is short for 'Well hello friends', the greeting used by Andreas in his coding videos",
