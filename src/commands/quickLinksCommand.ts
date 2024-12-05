@@ -76,6 +76,12 @@ export class QuickLinksCommand extends Command {
         "WHF is short for 'Well hello friends', the greeting used by Andreas in his coding videos",
       help: "Explains the meaning of 'whf'",
     },
+    {
+      name: "wpt",
+      response: `Charts comparing our score to other browsers, over time: <https://linegoup.lol>
+Our latest WPT results: <https://wpt.fyi/results/?product=ladybird>`,
+      help: "Get links our Web Platform Test results",
+    },
   ];
 
   override data() {
