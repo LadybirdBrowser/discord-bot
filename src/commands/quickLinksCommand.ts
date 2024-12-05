@@ -11,6 +11,7 @@ import Command from "./command";
 export class QuickLinksCommand extends Command {
   private readonly documentation: string =
     "https://github.com/LadybirdBrowser/ladybird/tree/master/Documentation";
+  private readonly editors: string = `${this.documentation}/EditorConfiguration`;
 
   readonly links: { help: string; response: string; name: string }[] = [
     {
@@ -26,12 +27,12 @@ export class QuickLinksCommand extends Command {
     },
     {
       name: "clion",
-      response: `Configuring the CLion IDE: <${this.documentation}/CLionConfiguration.md>`,
+      response: `Configuring the CLion IDE: <${this.editors}/CLionConfiguration.md>`,
       help: "Get a link to the directions for configuring the CLion IDE",
     },
     {
       name: "emacs",
-      response: `Configuring Emacs: <${this.documentation}/EmacsConfiguration.md>`,
+      response: `Configuring Emacs: <${this.editors}/EmacsConfiguration.md>`,
       help: "Get a link to the directions for configuring Emacs",
     },
     {
@@ -41,22 +42,22 @@ export class QuickLinksCommand extends Command {
     },
     {
       name: "vscode",
-      response: `Configuring the Visual Studio Code IDE: <${this.documentation}/VSCodeConfiguration.md>`,
+      response: `Configuring the Visual Studio Code IDE: <${this.editors}/VSCodeConfiguration.md>`,
       help: "Get a link to the directions for configuring the Visual Studio Code IDE",
     },
     {
       name: "helix",
-      response: `Configuring Helix: <${this.documentation}/HelixConfiguration.md>`,
+      response: `Configuring Helix: <${this.editors}/HelixConfiguration.md>`,
       help: "Get a link to the directions for configuring Helix",
     },
     {
       name: "nvim",
-      response: `Configuring Neo Vim: <${this.documentation}/NvimConfiguration.md>`,
+      response: `Configuring Neo Vim: <${this.editors}/NvimConfiguration.md>`,
       help: "Get a link to the directions for configuring Neo Vim",
     },
     {
       name: "vim",
-      response: `Configuring Vim: <${this.documentation}/NvimConfiguration.md>`,
+      response: `Configuring Vim: <${this.editors}/NvimConfiguration.md>`,
       help: "Get a link to the directions for configuring Vim",
     },
     {
@@ -70,16 +71,16 @@ export class QuickLinksCommand extends Command {
       help: "Get a link to a video explaining how to rewrite git history",
     },
     {
-      name: "soytineres",
-      response:
-        "https://cdn.discordapp.com/attachments/830525235803586570/843838343905411142/IMG_20210517_170429.png",
-      help: "!SOytinereS",
-    },
-    {
       name: "whf",
       response:
         "WHF is short for 'Well hello friends', the greeting used by Andreas in his coding videos",
       help: "Explains the meaning of 'whf'",
+    },
+    {
+      name: "wpt",
+      response: `Charts comparing our score to other browsers, over time: <https://linegoup.lol>
+Our latest WPT results: <https://wpt.fyi/results/?product=ladybird>`,
+      help: "Get links our Web Platform Test results",
     },
   ];
 
