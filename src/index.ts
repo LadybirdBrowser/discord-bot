@@ -15,7 +15,6 @@ import Discord, {
   Partials,
 } from "discord.js";
 import CommandHandler from "@/commandHandler";
-import config from "@/config/botConfig";
 import { env } from "@/config/env";
 
 process.on("unhandledRejection", reason => {
@@ -31,7 +30,7 @@ const client = new Discord.Client({
   partials: [Partials.Message, Partials.Channel, Partials.Reaction],
 });
 
-const commandHandler = new CommandHandler(config.production);
+const commandHandler = new CommandHandler();
 
 client.once(Events.ClientReady, () => {
   if (client.user != null) {

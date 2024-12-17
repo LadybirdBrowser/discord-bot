@@ -25,7 +25,7 @@ export default class CommandHandler {
   private readonly commands: Map<string[], Command>;
   private readonly help: string;
 
-  constructor(private readonly production: boolean) {
+  constructor() {
     const availableCommands = new Array<string>();
 
     this.commands = new Map(
@@ -70,15 +70,12 @@ export default class CommandHandler {
 
   /** Executes user commands contained in a message if appropriate. */
   async handleCommandInteraction(interaction: Interaction): Promise<void> {
-    if (!this.production) {
-      const msg = `Buggie bot received ${JSON.stringify(
-        interaction,
-        (_, v) => (typeof v === "bigint" ? `${v.toString()}n` : v),
-        4
-      )} from '${interaction.user.tag}`;
-      // await interaction.channel?.send(msg);
-      console.log(msg);
-    }
+    const msg = `Buggie bot received ${JSON.stringify(
+      interaction,
+      (_, v) => (typeof v === "bigint" ? `${v.toString()}n` : v),
+      4
+    )} from '${interaction.user.tag}`;
+    console.log(msg);
 
     if (!interaction.isCommand()) throw new Error("Invalid command interaction");
 
