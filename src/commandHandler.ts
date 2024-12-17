@@ -74,7 +74,7 @@ export default class CommandHandler {
       interaction,
       (_, v) => (typeof v === "bigint" ? `${v.toString()}n` : v),
       4
-    )} from '${interaction.user.tag}`;
+    )} from '${interaction.user.tag}'`;
     console.log(msg);
 
     if (!interaction.isCommand()) throw new Error("Invalid command interaction");
