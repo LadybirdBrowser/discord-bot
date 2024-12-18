@@ -151,7 +151,7 @@ export class GithubCommand extends Command {
 
           if (result) {
             await interaction.deleteReply();
-            await interaction.reply({ embeds: [result] });
+            await interaction.followUp({ embeds: [result] });
             return;
           }
         }
@@ -165,7 +165,7 @@ export class GithubCommand extends Command {
 
       if (result) {
         await interaction.deleteReply();
-        await interaction.reply({ embeds: [result] });
+        await interaction.followUp({ embeds: [result] });
         return;
       }
     }
@@ -177,7 +177,7 @@ export class GithubCommand extends Command {
 
       if (result) {
         await interaction.deleteReply();
-        await interaction.reply({ embeds: [result] });
+        await interaction.followUp({ embeds: [result] });
         return;
       }
     }
@@ -263,6 +263,6 @@ export class ReviewListCommand extends Command {
     const descriptionList = descriptions.map(({ description }) => description).join("\n");
 
     await interaction.deleteReply();
-    await interaction.reply({ content: descriptionList });
+    await interaction.followUp({ content: descriptionList });
   }
 }
