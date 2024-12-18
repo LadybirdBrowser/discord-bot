@@ -12,6 +12,7 @@ import {
   type TextBasedChannel,
   SlashCommandStringOption,
 } from "discord.js";
+import { MessageFlags } from "discord-api-types/v10";
 import githubAPI, { type Repository, LADYBIRD_REPO } from "@/apis/githubAPI";
 import { embedFromIssueOrPull } from "@/util/embedFromIssueOrPull";
 import { getSadCaret } from "@/util/emoji";
@@ -131,7 +132,7 @@ export class GithubCommand extends Command {
   }
 
   override async handleCommand(interaction: ChatInputCommandInteraction): Promise<void> {
-    await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply();
 
     const url = interaction.options.getString("url");
     const repositoryName = interaction.options.getString("repository");
@@ -150,8 +151,7 @@ export class GithubCommand extends Command {
           );
 
           if (result) {
-            await interaction.deleteReply();
-            await interaction.followUp({ embeds: [result] });
+            await interaction.editReply({ embeds: [result] });
             return;
           }
         }
@@ -164,8 +164,7 @@ export class GithubCommand extends Command {
       const result = await embedFromIssueOrPull(await githubAPI.getIssueOrPull(number, repository));
 
       if (result) {
-        await interaction.deleteReply();
-        await interaction.followUp({ embeds: [result] });
+        await interaction.editReply({ embeds: [result] });
         return;
       }
     }
@@ -176,15 +175,16 @@ export class GithubCommand extends Command {
       );
 
       if (result) {
-        await interaction.deleteReply();
-        await interaction.followUp({ embeds: [result] });
+        await interaction.editReply({ embeds: [result] });
         return;
       }
     }
 
+    await interaction.deleteReply();
     const sadcaret = await getSadCaret(interaction);
-    await interaction.editReply({
+    await interaction.followUp({
       content: `No matching issues or pull requests found ${sadcaret ?? ":^("}`,
+      flags: MessageFlags.Ephemeral,
     });
   }
 }
@@ -206,7 +206,7 @@ export class ReviewListCommand extends Command {
   }
 
   override async handleCommand(interaction: ChatInputCommandInteraction): Promise<void> {
-    await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply();
 
     const repositoryName = interaction.options.getString("repository");
     const unparsedNumbers = interaction.options.getString("numbers");
@@ -223,10 +223,12 @@ export class ReviewListCommand extends Command {
     }
 
     if (unparsedNumbers === null) {
-      await interaction.editReply({
+      await interaction.deleteReply();
+      await interaction.followUp({
         content: `No matching issues or pull requests found ${
           (await getSadCaret(interaction)) ?? ":^("
         }`,
+        flags: MessageFlags.Ephemeral,
       });
       return undefined;
     }
@@ -236,10 +238,12 @@ export class ReviewListCommand extends Command {
     );
 
     if (numbers.length === 0) {
-      await interaction.editReply({
+      await interaction.deleteReply();
+      await interaction.followUp({
         content: `No numbers found in the PR list text '${unparsedNumbers}' ${
           (await getSadCaret(interaction)) ?? ":^("
         } `,
+        flags: MessageFlags.Ephemeral,
       });
       return undefined;
     }
@@ -252,17 +256,18 @@ export class ReviewListCommand extends Command {
     );
     const failedDescriptions = descriptions.filter(({ description }) => description === undefined);
     if (failedDescriptions.length !== 0) {
-      await interaction.editReply({
+      await interaction.deleteReply();
+      await interaction.followUp({
         content: `No matching issues or pull requests found for the numbers ${failedDescriptions
           .map(({ number }) => number)
           .join(", ")} ${(await getSadCaret(interaction)) ?? ":^("} `,
+        flags: MessageFlags.Ephemeral,
       });
       return undefined;
     }
 
     const descriptionList = descriptions.map(({ description }) => description).join("\n");
 
-    await interaction.deleteReply();
-    await interaction.followUp({ content: descriptionList });
+    await interaction.editReply({ content: descriptionList });
   }
 }
