@@ -131,6 +131,8 @@ export class GithubCommand extends Command {
   }
 
   override async handleCommand(interaction: ChatInputCommandInteraction): Promise<void> {
+    await interaction.deferReply({ ephemeral: true });
+
     const url = interaction.options.getString("url");
     const repositoryName = interaction.options.getString("repository");
     const number = interaction.options.getNumber("number");
@@ -148,6 +150,7 @@ export class GithubCommand extends Command {
           );
 
           if (result) {
+            await interaction.deleteReply();
             await interaction.reply({ embeds: [result] });
             return;
           }
@@ -161,6 +164,7 @@ export class GithubCommand extends Command {
       const result = await embedFromIssueOrPull(await githubAPI.getIssueOrPull(number, repository));
 
       if (result) {
+        await interaction.deleteReply();
         await interaction.reply({ embeds: [result] });
         return;
       }
@@ -172,15 +176,15 @@ export class GithubCommand extends Command {
       );
 
       if (result) {
+        await interaction.deleteReply();
         await interaction.reply({ embeds: [result] });
         return;
       }
     }
 
     const sadcaret = await getSadCaret(interaction);
-    await interaction.reply({
+    await interaction.editReply({
       content: `No matching issues or pull requests found ${sadcaret ?? ":^("}`,
-      ephemeral: true,
     });
   }
 }
@@ -202,6 +206,8 @@ export class ReviewListCommand extends Command {
   }
 
   override async handleCommand(interaction: ChatInputCommandInteraction): Promise<void> {
+    await interaction.deferReply({ ephemeral: true });
+
     const repositoryName = interaction.options.getString("repository");
     const unparsedNumbers = interaction.options.getString("numbers");
 
@@ -217,11 +223,10 @@ export class ReviewListCommand extends Command {
     }
 
     if (unparsedNumbers === null) {
-      await interaction.reply({
+      await interaction.editReply({
         content: `No matching issues or pull requests found ${
           (await getSadCaret(interaction)) ?? ":^("
         }`,
-        ephemeral: true,
       });
       return undefined;
     }
@@ -231,11 +236,10 @@ export class ReviewListCommand extends Command {
     );
 
     if (numbers.length === 0) {
-      await interaction.reply({
+      await interaction.editReply({
         content: `No numbers found in the PR list text '${unparsedNumbers}' ${
           (await getSadCaret(interaction)) ?? ":^("
         } `,
-        ephemeral: true,
       });
       return undefined;
     }
@@ -248,19 +252,17 @@ export class ReviewListCommand extends Command {
     );
     const failedDescriptions = descriptions.filter(({ description }) => description === undefined);
     if (failedDescriptions.length !== 0) {
-      await interaction.reply({
+      await interaction.editReply({
         content: `No matching issues or pull requests found for the numbers ${failedDescriptions
           .map(({ number }) => number)
           .join(", ")} ${(await getSadCaret(interaction)) ?? ":^("} `,
-        ephemeral: true,
       });
       return undefined;
     }
 
     const descriptionList = descriptions.map(({ description }) => description).join("\n");
 
-    await interaction.reply({
-      content: descriptionList,
-    });
+    await interaction.deleteReply();
+    await interaction.reply({ content: descriptionList });
   }
 }
