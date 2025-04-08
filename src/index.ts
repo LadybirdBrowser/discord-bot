@@ -7,8 +7,9 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-import Discord, {
+import {
   ActivityType,
+  Client,
   Events,
   GatewayIntentBits,
   type Interaction,
@@ -21,13 +22,21 @@ process.on("unhandledRejection", reason => {
   console.log("Unhandled Rejection:", reason);
 });
 
-const client = new Discord.Client({
+const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.GuildEmojisAndStickers,
   ],
   partials: [Partials.Message, Partials.Channel, Partials.Reaction],
+  presence: {
+    activities: [
+      {
+        type: ActivityType.Custom,
+        name: "Type /help to list commands!",
+      },
+    ],
+  },
 });
 
 const commandHandler = new CommandHandler();
@@ -35,16 +44,6 @@ const commandHandler = new CommandHandler();
 client.once(Events.ClientReady, () => {
   if (client.user != null) {
     console.log(`Logged in as ${client.user.tag}.`);
-    client.user.setPresence({
-      status: "online",
-      activities: [
-        {
-          type: ActivityType.Playing,
-          name: "Type /help to list commands.",
-        },
-      ],
-    });
-
     commandHandler.registerInteractions(client);
   }
 });
