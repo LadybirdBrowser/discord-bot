@@ -67,11 +67,12 @@ client.on(Events.Error, e => {
 
 // Message updates contain full data. Typings are corrected in a newer discord.js version.
 client.on(Events.MessageUpdate, async (_, newMessage) => {
-  await suppressGitHubUnfurl(newMessage as Message);
+  if (!newMessage.inGuild()) return;
+  await suppressGitHubUnfurl(newMessage as Message<true>);
 });
 
 client.on(Events.MessageCreate, async (message: Message<boolean>) => {
-  if (message.author.bot) return;
+  if (message.author.bot || !message.inGuild()) return;
   await suppressGitHubUnfurl(message);
 });
 
