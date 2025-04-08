@@ -12,10 +12,12 @@ import Discord, {
   Events,
   GatewayIntentBits,
   type Interaction,
+  Message,
   Partials,
 } from "discord.js";
 import CommandHandler from "@/commandHandler";
 import { env } from "@/config/env";
+import { suppressGitHubUnfurl } from "./util/suppressGitHubUnfurl";
 
 process.on("unhandledRejection", reason => {
   console.log("Unhandled Rejection:", reason);
@@ -24,8 +26,9 @@ process.on("unhandledRejection", reason => {
 const client = new Discord.Client({
   intents: [
     GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
     GatewayIntentBits.GuildEmojisAndStickers,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
   ],
   partials: [Partials.Message, Partials.Channel, Partials.Reaction],
 });
@@ -61,24 +64,15 @@ client.on(Events.InteractionCreate, async (interaction: Interaction) => {
 client.on(Events.Error, e => {
   console.error("Discord client error!", e);
 });
-client.on(Events.MessageCreate, async message => {
+
+// Message updates contain full data. Typings are corrected in a newer discord.js version.
+client.on(Events.MessageUpdate, async (_, newMessage) => {
+  await suppressGitHubUnfurl(newMessage as Message);
+});
+
+client.on(Events.MessageCreate, async (message: Message<boolean>) => {
   if (message.author.bot) return;
-
-  message = await message.fetch();
-
-  for (const embed of message.embeds) {
-    if (!embed.url) continue;
-
-    const url = new URL(embed.url);
-    if (url.host !== "github.com") continue;
-
-    const segments = url.pathname.split("/");
-    const githubUrlType: string | undefined = segments[3];
-    if (githubUrlType === "tree" || githubUrlType === "blob") {
-      await message.suppressEmbeds();
-      return;
-    }
-  }
+  await suppressGitHubUnfurl(message);
 });
 
 client.login(env.DISCORD_TOKEN);
