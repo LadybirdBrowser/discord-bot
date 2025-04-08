@@ -43,8 +43,6 @@
     "axios": "^1.4.0",
     "bufferutil": "^4.0.7",
     "discord.js": "^14.16.3",
-    "mastodon": "^1.2.2",
-    "rimraf": "^5.0.0",
     "utf-8-validate": "^6.0.3",
     "zlib-sync": "^0.1.8",
     "zod": "^3.23.8"
