@@ -19,8 +19,8 @@ To configure the bot for local development you simply need to drop your discord 
 The contents should look something like:
 
 ```ini
-discord_token=<your-token-goes-here>
-guild_id=<your-guild-id-goes-here>
+DISCORD_TOKEN=<your-token-goes-here>
+GUILD_ID=<your-guild-id-goes-here>
 ```
 
 See: https://www.writebots.com/discord-bot-token/
