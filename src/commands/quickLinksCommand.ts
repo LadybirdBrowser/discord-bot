@@ -9,8 +9,9 @@ import { ChatInputCommandInteraction } from "discord.js";
 import Command from "./command";
 
 export class QuickLinksCommand extends Command {
-  private readonly documentation: string =
-    "https://github.com/LadybirdBrowser/ladybird/tree/master/Documentation";
+  private readonly ladybirdRepository: string =
+    "https://github.com/LadybirdBrowser/ladybird/tree/master";
+  private readonly documentation: string = `${this.ladybirdRepository}/Documentation`;
   private readonly editors: string = `${this.documentation}/EditorConfiguration`;
 
   readonly links: { help: string; response: string; name: string }[] = [
@@ -36,9 +37,9 @@ export class QuickLinksCommand extends Command {
       help: "Get a link to the directions for configuring Emacs",
     },
     {
-      name: "gettingstarted",
-      response: `**Welcome to the Ladybird web browser project!**\nHere's a guide to help you get started contributing: <${this.documentation}/GettingStartedContributing.md>`,
-      help: "Get a link to the getting started contributing guide",
+      name: "getinvolved",
+      response: `Help Ladybird with bug reports, testing, technical feedback, and design or standards discussion: <${this.ladybirdRepository}/CONTRIBUTING.md>`,
+      help: "Learn how to get involved with Ladybird",
     },
     {
       name: "vscode",

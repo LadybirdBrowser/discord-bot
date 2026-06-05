@@ -194,7 +194,7 @@ export class ReviewListCommand extends Command {
     const aliases = ["reviewlist", "prlist"];
 
     const baseCommand = new SlashCommandBuilder()
-      .setDescription("Link several pull requests for review")
+      .setDescription("Link several pull requests")
       .addStringOption(numbers =>
         numbers
           .setName("numbers")
