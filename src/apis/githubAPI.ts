@@ -59,7 +59,6 @@ class GithubAPI {
   private readonly octokit: Octokit;
 
   constructor() {
-    // @ts-expect-error -- TODO: types need fixes
     this.octokit = new (Octokit.plugin(OctokitThrottling))({
       userAgent: "Ladybird-Bot",
       auth: env.GITHUB_TOKEN,

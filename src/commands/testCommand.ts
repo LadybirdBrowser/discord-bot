@@ -11,7 +11,6 @@ import { getLadybird, getMakemore, getSadCaret } from "@/util/emoji";
 import Command from "./command";
 import githubAPI from "@/apis/githubAPI";
 
-/* eslint-disable camelcase */
 interface Result {
   commit_timestamp: number;
   run_timestamp: number;
@@ -25,7 +24,6 @@ interface Result {
     };
   };
 }
-/* eslint-enable camelcase */
 
 interface TestVariant {
   description: string;

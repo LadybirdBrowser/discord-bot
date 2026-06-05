@@ -49,14 +49,14 @@ export class UserCommand extends Command {
 
     if (username === null) {
       const message = await noMatchingFoundMessage(interaction);
-      await interaction.editReply(message);
+      await interaction.editReply({ content: message.content });
       throw new Error(message.content);
     }
 
     const response = await githubAPI.fetchUserIssuesAndPulls(username).catch(() => null);
     if (!response || (response.issues.length === 0 && response.pulls.length === 0)) {
       const message = await noMatchingFoundMessage(interaction);
-      await interaction.editReply(message);
+      await interaction.editReply({ content: message.content });
       throw new Error(message.content);
     }
 

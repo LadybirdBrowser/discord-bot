@@ -77,7 +77,8 @@ export default class CommandHandler {
     )} from '${interaction.user.tag}'`;
     console.log(msg);
 
-    if (!interaction.isCommand()) throw new Error("Invalid command interaction");
+    if (!interaction.isChatInputCommand() && !interaction.isContextMenuCommand())
+      throw new Error("Invalid command interaction");
 
     if (interaction.commandName === "help") {
       await interaction.reply({
@@ -120,7 +121,7 @@ export default class CommandHandler {
       throw new Error(`${matchedCommand.constructor.name}: Missing handleContextMenu handler`);
     }
 
-    // NOTE: At this point we can we be sure that it's a command
+    // NOTE: At this point we can be sure that it's a chat input command.
     return this.callInteractionHandler(matchedCommand, matchedCommand.handleCommand, interaction);
   }
 
