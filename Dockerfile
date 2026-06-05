@@ -1,4 +1,4 @@
-ARG BUN_VERSION="1.1.38"
+ARG BUN_VERSION="1.3.14"
 
 # --- Build container ---
 FROM oven/bun:${BUN_VERSION}-slim AS build
