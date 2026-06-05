@@ -1,4 +1,5 @@
 name: CodeQL Configuration
 
 paths:
+  - "./.github/workflows"
   - "./src"
