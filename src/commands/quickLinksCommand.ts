@@ -17,8 +17,7 @@ export class QuickLinksCommand extends Command {
   readonly links: { help: string; response: string; name: string }[] = [
     {
       name: "botsrc",
-      response:
-        "Bot Source: <https://github.com/LadybirdBrowser/discord-bot/tree/master/src/commands>",
+      response: "Bot Source: <https://github.com/LadybirdBrowser/discord-bot>",
       help: "Get a link to the source code for bot commands",
     },
     {
